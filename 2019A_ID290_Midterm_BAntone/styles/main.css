@@ -1,0 +1,12 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    background-color: turquoise;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+}
+img{
+    height: auto;
+    width: 600px;
+}
