@@ -1,7 +1,6 @@
-var url = 'https://fengshui-api.com/api/v1/findChineseSignOfYear?token=R0IF9Mj2bbE7C02186d647618Ml8065e322e7T52&year=1998&month=9&day=26&gender=0'
-var params = "";
-
 $('#searchBtn').click(function(){
+    var url = 'https://fengshui-api.com/api/v1/findChineseSignOfYear?token=R0IF9Mj2bbE7C02186d647618Ml8065e322e7T52&year=1998&month=9&day=26&gender=0'
+    var params = "";
     params = "";
     params += '&year=' + $('#year').val();
     params += '&month=' + $('#month').val();
@@ -12,17 +11,25 @@ $('#searchBtn').click(function(){
     });
 });
 
-var aUrl = 'https://random.dog/a6df4a43-0b67-4d9c-a8a7-f55c5c2ec130.mp4'
 $('#btn').click(function(){
-    $.getJSON(aUrl, function(d){
-        $('#dogArea').html('<h1>' + d.result + '</h1>')
+    var url =  'https://random.dog/woof.json';
+    $.getJSON(url , function(d){
+        $('#dogArea').html('<img src="' + d.result + '"/>')
     });
 });
-var event = 'http://api.eventful.com/nashville_tn/events?api_key=dDQFsGCTPxzHLFzB&q=music&l=Nashville'
+
 $('#nBtn').click(function(){
-    $.getJSON(event + params, function(da) {  
-        params = "";
-        params += '&location'.$('#location').val();
-        $('#numberArea').html('<h1>'+ da.result+'</h1>');
+    var url = 'http://www.omdbapi.com/?apikey=cc45ded&s='+ $('#location').val();
+    $.getJSON(url , function(movies){
+        movies.Search.forEach(function(m){
+            $('#movieArea').append('<div class="movie"><h1 class="title">'+ m.Title+'</h1><img src="'+m.Poster+'" alt="" class="poster"><br><br><small class="details">'+m.Year+'</small></div>')
+            });
+        $('#modalArea').click(function(){
+            $('body').append('<div id="modalBg"><div id="modalContent">'+ $(this).html() +'</div></div>');
+        });
+        $('#closeBtn').click(function(){
+            $('#modalArea').html('');
+        });
     });
-})
+    $('#movieArea').html('');
+});
